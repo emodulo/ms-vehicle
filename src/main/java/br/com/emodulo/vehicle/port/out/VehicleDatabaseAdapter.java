@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public interface VehicleDatabaseAdapter {
 
-    Vehicle addVehicle(Vehicle vehicle);
-    Vehicle editVehicle(Vehicle vehicle);
+    Vehicle addVehicle(Vehicle vehicle) throws Exception;
+    Vehicle editVehicle(Vehicle vehicle) throws Exception;
     List<Vehicle> getAll(UUID vehicleId, Boolean isReserved);
 }

@@ -13,13 +13,17 @@ public class VehicleEntity {
     @Column(name = "vehicle_id")
     private UUID id;
 
-    @Column(name = "identification")
-    private String identification;
+    @Column(name = "plate")
+    private String plate;
+
     @Column(name = "color")
     private String color;
 
     @Column(name = "year")
     private Integer year;
+
+    @Column(name = "mileage")
+    private Integer mileage;
 
     @ManyToOne
     @JoinColumn(name = "model_id")

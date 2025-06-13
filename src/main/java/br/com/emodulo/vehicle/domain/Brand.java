@@ -11,7 +11,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class Manufacturer {
+public class Brand {
 
     private final UUID id;
     private final String name;

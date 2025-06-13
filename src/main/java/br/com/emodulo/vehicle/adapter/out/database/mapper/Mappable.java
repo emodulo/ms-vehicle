@@ -2,10 +2,11 @@ package br.com.emodulo.vehicle.adapter.out.database.mapper;
 
 import java.util.List;
 
-public interface Mappable<E, D> {
-        E fromDomain(D domain);
+public interface Mappable<Entity, Domain> {
 
-        D toDomain(E entity);
+        Entity toEntity(Domain domain);
 
-        List<D> toDomain(List<E> entities);
-        }
+        Domain toDomain(Entity entity);
+
+        List<Entity> toEntity(List<Domain> domains);
+}

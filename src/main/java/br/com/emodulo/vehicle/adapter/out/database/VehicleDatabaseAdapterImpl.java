@@ -18,18 +18,35 @@ public class VehicleDatabaseAdapterImpl implements VehicleDatabaseAdapter {
     private final VehicleMapper mapper;
 
     @Override
-    public Vehicle addVehicle(Vehicle vehicle) {
+    public Vehicle addVehicle(Vehicle vehicle) throws Exception {
+        try {
 
-        VehicleEntity entity = mapper.fromDomain(vehicle);
-        VehicleEntity entityDb = repository.save(entity);
+            VehicleEntity entity = mapper.toEntity(vehicle);
+            return mapper.toDomain(repository.save(entity));
 
+        } catch (Exception exception) {
+            throw new Exception(exception.getMessage(), exception);
+        }
 
-        return null;
     }
 
     @Override
-    public Vehicle editVehicle(Vehicle vehicle) {
-        return null;
+    public Vehicle editVehicle(Vehicle vehicle) throws Exception {
+        try{
+
+            var vehicleDb = repository.findById(vehicle.getId());
+            if(vehicleDb.isEmpty()) {
+                throw new IllegalArgumentException("Vehicle not found");
+            }
+
+            var vehicleEntity = mapper.toEntity(vehicle);
+            vehicleEntity = repository.save(vehicleEntity);
+
+            return mapper.toDomain(vehicleEntity);
+
+        } catch (Exception exception) {
+            throw new Exception(exception.getMessage(), exception);
+        }
     }
 
     @Override

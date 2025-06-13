@@ -17,8 +17,8 @@ public class ModelEntity {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "manufacturer_id")
-    private ManufacturerEntity manufacturer;
+    @JoinColumn(name = "brand_id")
+    private BrandEntity brand;
 
     @OneToMany(mappedBy = "model", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<VehicleEntity> vehicles;

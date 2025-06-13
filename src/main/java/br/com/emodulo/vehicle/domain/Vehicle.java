@@ -12,8 +12,9 @@ import java.util.UUID;
 public class Vehicle {
 
     private final UUID id;
-    private final String identification;
+    private final String plate;
     private final String color;
     private final Integer year;
+    private final Integer mileage;
     private final Model model;
 }

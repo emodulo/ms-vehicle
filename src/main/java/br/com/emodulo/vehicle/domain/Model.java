@@ -13,5 +13,5 @@ public class Model {
 
     private final UUID id;
     private final String name;
-    private final Manufacturer manufacturer;
+    private final Brand brand;
 }
