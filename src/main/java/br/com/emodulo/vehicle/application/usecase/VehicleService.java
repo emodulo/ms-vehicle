@@ -40,4 +40,14 @@ public class VehicleService implements VehicleUseCasePort {
     public List<Vehicle> listSold() {
         return vehicleRepository.findAllSold();
     }
+
+    @Override
+    public Vehicle markAsSold(Long id) {
+        Vehicle vehicle = vehicleRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Vehicle not found"));
+
+        vehicle.setIsSold(true);
+
+        return vehicleRepository.save(vehicle);
+    }
 }

@@ -9,4 +9,5 @@ public interface VehicleUseCasePort {
     Vehicle update(Long id, Vehicle vehicle);
     List<Vehicle> listAvailable();
     List<Vehicle> listSold();
+    Vehicle markAsSold(Long id);
 }

@@ -44,4 +44,10 @@ public class VehicleController {
         List<Vehicle> list = service.listSold();
         return ResponseEntity.ok(list.stream().map(mapper::toResponseDTO).toList());
     }
+
+    @PatchMapping("/{id}/sell")
+    public ResponseEntity<VehicleResponseDTO> markAsSold(@PathVariable Long id) {
+        Vehicle updated = service.markAsSold(id);
+        return ResponseEntity.ok(mapper.toResponseDTO(updated));
+    }
 }
