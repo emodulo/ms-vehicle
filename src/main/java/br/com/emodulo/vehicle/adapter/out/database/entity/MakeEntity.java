@@ -26,4 +26,9 @@ public class MakeEntity {
 
     @OneToMany(mappedBy = "make", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ModelEntity> models;
+
+    public MakeEntity(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

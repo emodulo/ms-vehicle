@@ -1,5 +1,7 @@
 package br.com.emodulo.vehicle.adapter.out.database.mapper;
 
+import br.com.emodulo.vehicle.adapter.out.database.entity.MakeEntity;
+import br.com.emodulo.vehicle.adapter.out.database.entity.ModelEntity;
 import br.com.emodulo.vehicle.adapter.out.database.entity.VehicleEntity;
 import br.com.emodulo.vehicle.domain.Make;
 import br.com.emodulo.vehicle.domain.Model;
@@ -22,6 +24,16 @@ public class VehicleEntityMapper {
         entity.setIsArmored(domain.getIsArmored());
         entity.setPrice(domain.getPrice());
         entity.setIsSold(domain.getIsSold());
+        entity.setModel(
+                new ModelEntity(
+                        domain.getModel().getId(),
+                        domain.getModel().getName(),
+                        new MakeEntity (
+                                domain.getModel().getMake().getId(),
+                                domain.getModel().getMake().getName()
+                        )
+                )
+        );
         return entity;
     }
 

@@ -29,4 +29,10 @@ public class ModelEntity {
 
     @OneToMany(mappedBy = "model", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<VehicleEntity> vehicles;
+
+    public ModelEntity(Long id, String name, MakeEntity make) {
+        this.id = id;
+        this.name = name;
+        this.make = make;
+    }
 }
