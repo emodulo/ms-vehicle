@@ -5,11 +5,13 @@ import br.com.emodulo.vehicle.adapter.out.database.repository.VehicleJpaReposito
 import br.com.emodulo.vehicle.domain.Vehicle;
 import br.com.emodulo.vehicle.port.out.VehicleRepositoryPort;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
 
+@Component
 @RequiredArgsConstructor
 public class VehicleDatabaseAdapter implements VehicleRepositoryPort {
 

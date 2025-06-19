@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
 public interface VehicleJpaRepository extends JpaRepository<VehicleEntity, Long> {
     List<VehicleEntity> findByIsSoldFalseOrderByPriceAsc();
     List<VehicleEntity> findByIsSoldTrueOrderByPriceAsc();
