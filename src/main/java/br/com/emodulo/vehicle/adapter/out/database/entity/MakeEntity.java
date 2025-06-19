@@ -1,6 +1,5 @@
 package br.com.emodulo.vehicle.adapter.out.database.entity;
 
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,24 +8,22 @@ import lombok.Setter;
 
 import java.util.List;
 
+
 @Getter
 @Setter
 @RequiredArgsConstructor
 @Entity
-@Table(name = "tb_models")
-public class ModelEntity {
+@Table(name = "tb_makes")
+public class MakeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "model_id")
+    @Column(name = "make_id")
     private Long id;
+
     @Column(name = "name")
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "make_id")
-    private MakeEntity make;
-
-    @OneToMany(mappedBy = "model", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<VehicleEntity> vehicles;
+    @OneToMany(mappedBy = "make", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ModelEntity> models;
 }

@@ -1,29 +1,54 @@
 package br.com.emodulo.vehicle.adapter.out.database.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
-import java.util.UUID;
+import java.math.BigDecimal;
 
+@Getter
+@Setter
+@RequiredArgsConstructor
 @Entity
-@Table(name = "vehicle")
+@Table(name = "tb_vehicles")
 public class VehicleEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "vehicle_id")
-    private UUID id;
+    private Long id;
 
-    @Column(name = "plate")
-    private String plate;
+    @Column(name = "version")
+    private String version;
+
+    @Column(name = "yearFabrication")
+    private Integer yearFabrication;
+
+    @Column(name = "yearModel")
+    private Integer yearModel;
+
+    @Column(name = "Odometer")
+    private Integer Odometer;
 
     @Column(name = "color")
     private String color;
 
-    @Column(name = "year")
-    private Integer year;
+    @Column(name = "bodyType")
+    private String bodyType;
 
-    @Column(name = "mileage")
-    private Integer mileage;
+    @Column(name = "transmission")
+    private String transmission;
+
+    @Column(name = "isArmored")
+    private Boolean isArmored;
+
+    @Column(name = "price")
+    private BigDecimal price;
+
+    @Column(name = "isSold")
+    private Boolean isSold;
 
     @ManyToOne
     @JoinColumn(name = "model_id")

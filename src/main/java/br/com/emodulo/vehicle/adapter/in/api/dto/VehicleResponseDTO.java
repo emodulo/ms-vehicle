@@ -1,16 +1,27 @@
 package br.com.emodulo.vehicle.adapter.in.api.dto;
 
-import br.com.emodulo.vehicle.domain.Model;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.UUID;
+import java.math.BigDecimal;
 
-public record VehicleResponseDTO(
-        UUID id,
-        String brand,
-        String model,
-        String plate,
-        String color,
-        Integer year,
-        Integer mileage
-) {
+@Getter
+@Setter
+@AllArgsConstructor
+public class VehicleResponseDTO {
+
+    private Long id;
+    private String version;
+    private Integer yearFabrication;
+    private Integer yearModel;
+    private Integer odometer;
+    private String color;
+    private String bodyType;
+    private String transmission;
+    private Boolean isArmored;
+    private BigDecimal price;
+    private Boolean isSold;
+    private String model;
+    private String make;
 }

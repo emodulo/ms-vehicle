@@ -1,38 +1,47 @@
 package br.com.emodulo.vehicle.adapter.in.api.controller;
 
+import br.com.emodulo.vehicle.adapter.in.api.dto.VehicleRequestDTO;
+import br.com.emodulo.vehicle.adapter.in.api.dto.VehicleResponseDTO;
+import br.com.emodulo.vehicle.adapter.in.api.mapper.VehicleDtoMapper;
+import br.com.emodulo.vehicle.domain.Vehicle;
+import br.com.emodulo.vehicle.port.in.VehicleUseCasePort;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("/api/vehicle")
+@RequestMapping("/vehicles")
 @RequiredArgsConstructor
 public class VehicleController {
 
-    public ResponseEntity<?> addVehicle() {
+    private final VehicleUseCasePort service;
+    private final VehicleDtoMapper mapper;
 
-        return ResponseEntity.ok().build();
+    @PostMapping
+    public ResponseEntity<VehicleResponseDTO> create(@Valid @RequestBody VehicleRequestDTO dto) {
+        Vehicle saved = service.create(mapper.toDomain(dto));
+        return ResponseEntity.ok(mapper.toResponseDTO(saved));
     }
 
-    public ResponseEntity<?> getVehicle() {
-
-        return ResponseEntity.ok().build();
+    @PutMapping("/{id}")
+    public ResponseEntity<VehicleResponseDTO> update(@PathVariable Long id,
+                                                     @Valid @RequestBody VehicleRequestDTO dto) {
+        Vehicle updated = service.update(id, mapper.toDomain(dto));
+        return ResponseEntity.ok(mapper.toResponseDTO(updated));
     }
 
-
-    public ResponseEntity<?> editVehicle() {
-
-        return ResponseEntity.ok().build();
+    @GetMapping
+    public ResponseEntity<List<VehicleResponseDTO>> listAvailable() {
+        List<Vehicle> list = service.listAvailable();
+        return ResponseEntity.ok(list.stream().map(mapper::toResponseDTO).toList());
     }
 
-    public ResponseEntity<?> deleteVehicle() {
-
-        return ResponseEntity.ok().build();
-    }
-
-    public ResponseEntity<?> listVehicles() {
-
-        return ResponseEntity.ok().build();
+    @GetMapping("/sold")
+    public ResponseEntity<List<VehicleResponseDTO>> listSold() {
+        List<Vehicle> list = service.listSold();
+        return ResponseEntity.ok(list.stream().map(mapper::toResponseDTO).toList());
     }
 }

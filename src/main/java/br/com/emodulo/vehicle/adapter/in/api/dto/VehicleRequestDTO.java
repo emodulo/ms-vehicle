@@ -1,28 +1,52 @@
 package br.com.emodulo.vehicle.adapter.in.api.dto;
 
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.UUID;
+import java.math.BigDecimal;
 
-public record VehicleRequestDTO (
+@Getter
+@Setter
+@NoArgsConstructor
+public class VehicleRequestDTO {
 
-        @NotBlank(message = "Id do veículo é obrigatório", groups = OnUpdate.class)
-        UUID id,
+        @NotBlank
+        private String version;
 
-        @NotBlank (message = "Placa do veículo é obrigatório")
-        String plate,
+        @NotNull
+        @Min(1900)
+        private Integer yearFabrication;
 
-        @NotBlank (message = "Cor do veículo é obrigatório")
-        String color,
+        @NotNull
+        @Min(1900)
+        private Integer yearModel;
 
-        @Positive(message = "Ano do veículo é obrigatório")
-        Integer year,
+        @NotNull
+        @Min(0)
+        private Integer odometer;
 
-        @Positive(message = "Quilometragem do veículo é obrigatório")
-        Integer mileage,
+        @NotBlank
+        private String color;
 
-        @Positive(message = "Id do modelo do veículo é obrigatório")
-        Long model_id
-) {
+        @NotBlank
+        private String bodyType;
+
+        @NotBlank
+        private String transmission;
+
+        private Boolean isArmored = false;
+
+        @NotNull
+        @DecimalMin("0.0")
+        private BigDecimal price;
+
+        private Boolean isSold = false;
+
+        @NotNull
+        private Long modelId;
 }

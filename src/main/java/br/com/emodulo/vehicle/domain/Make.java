@@ -1,22 +1,22 @@
 package br.com.emodulo.vehicle.domain;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-import java.util.UUID;
+import java.util.List;
+
 
 @Getter
 @Setter
-public class Model {
+public class Make {
 
     private Long id;
     private String name;
-    private Make make;
 
-    public Model(Long id, String name, Make make) {
+    public Make(Long id, String name) {
         this.id = id;
         this.name = name;
-        this.make = make;
     }
 }
