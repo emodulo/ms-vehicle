@@ -10,4 +10,5 @@ public interface VehicleUseCasePort {
     List<Vehicle> listAvailable();
     List<Vehicle> listSold();
     Vehicle markAsSold(Long id);
+    void deleteById(Long id);
 }

@@ -50,4 +50,10 @@ public class VehicleController {
         Vehicle updated = service.markAsSold(id);
         return ResponseEntity.ok(mapper.toResponseDTO(updated));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        service.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }

@@ -10,4 +10,6 @@ public interface VehicleRepositoryPort {
     Optional<Vehicle> findById(Long id);
     List<Vehicle> findAllAvailable();
     List<Vehicle> findAllSold();
+    void deleteById(Long id);
+    boolean existsById(Long id);
 }

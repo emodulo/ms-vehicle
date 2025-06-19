@@ -40,4 +40,14 @@ public class VehicleDatabaseAdapter implements VehicleRepositoryPort {
         return jpaRepository.findByIsSoldTrueOrderByPriceAsc()
                 .stream().map(mapper::toDomain).toList();
     }
+
+    @Override
+    public void deleteById(Long id) {
+        jpaRepository.deleteById(id);
+    }
+
+    @Override
+    public boolean existsById(Long id) {
+        return jpaRepository.existsById(id);
+    }
 }

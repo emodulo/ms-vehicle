@@ -23,31 +23,31 @@ public class VehicleEntity {
     @Column(name = "version")
     private String version;
 
-    @Column(name = "yearFabrication")
+    @Column(name = "yearfabrication")
     private Integer yearFabrication;
 
-    @Column(name = "yearModel")
+    @Column(name = "yearmodel")
     private Integer yearModel;
 
-    @Column(name = "Odometer")
+    @Column(name = "odometer")
     private Integer Odometer;
 
     @Column(name = "color")
     private String color;
 
-    @Column(name = "bodyType")
+    @Column(name = "bodytype")
     private String bodyType;
 
     @Column(name = "transmission")
     private String transmission;
 
-    @Column(name = "isArmored")
+    @Column(name = "isarmored")
     private Boolean isArmored;
 
     @Column(name = "price")
     private BigDecimal price;
 
-    @Column(name = "isSold")
+    @Column(name = "issold")
     private Boolean isSold;
 
     @ManyToOne
