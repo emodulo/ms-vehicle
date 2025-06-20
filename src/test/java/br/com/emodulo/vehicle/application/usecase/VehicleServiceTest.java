@@ -1,8 +1,8 @@
 package br.com.emodulo.vehicle.application.usecase;
 
-import br.com.emodulo.vehicle.domain.Make;
-import br.com.emodulo.vehicle.domain.Model;
-import br.com.emodulo.vehicle.domain.Vehicle;
+import br.com.emodulo.vehicle.domain.model.Make;
+import br.com.emodulo.vehicle.domain.model.Model;
+import br.com.emodulo.vehicle.domain.model.Vehicle;
 import br.com.emodulo.vehicle.port.out.ModelRepositoryPort;
 import br.com.emodulo.vehicle.port.out.VehicleRepositoryPort;
 import org.junit.jupiter.api.Test;

@@ -1,6 +1,6 @@
 package br.com.emodulo.vehicle.port.out;
 
-import br.com.emodulo.vehicle.domain.Vehicle;
+import br.com.emodulo.vehicle.domain.model.Vehicle;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

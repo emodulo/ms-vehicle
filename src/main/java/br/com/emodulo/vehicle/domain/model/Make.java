@@ -1,11 +1,7 @@
-package br.com.emodulo.vehicle.domain;
+package br.com.emodulo.vehicle.domain.model;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-
-import java.util.List;
 
 
 @Getter

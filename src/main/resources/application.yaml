@@ -16,3 +16,11 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui/index.html
+    enabled: true
+  api-docs:
+    enabled: true
+    path: /v3/api-docs

@@ -1,10 +1,7 @@
-package br.com.emodulo.vehicle.domain;
+package br.com.emodulo.vehicle.domain.model;
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-
-import java.util.UUID;
 
 @Getter
 @Setter

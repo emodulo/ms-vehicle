@@ -1,7 +1,8 @@
 package br.com.emodulo.vehicle.application.usecase;
 
-import br.com.emodulo.vehicle.domain.Model;
-import br.com.emodulo.vehicle.domain.Vehicle;
+import br.com.emodulo.vehicle.domain.exception.VehicleNotFoundException;
+import br.com.emodulo.vehicle.domain.model.Model;
+import br.com.emodulo.vehicle.domain.model.Vehicle;
 import br.com.emodulo.vehicle.port.in.VehicleUseCasePort;
 import br.com.emodulo.vehicle.port.out.ModelRepositoryPort;
 import br.com.emodulo.vehicle.port.out.VehicleRepositoryPort;
@@ -9,8 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -44,7 +43,7 @@ public class VehicleService implements VehicleUseCasePort {
     @Override
     public Vehicle markAsSold(Long id) {
         Vehicle vehicle = vehicleRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Vehicle not found"));
+                .orElseThrow(() -> new VehicleNotFoundException("Vehicle not found with id " + id));
 
         vehicle.setIsSold(true);
 
@@ -54,7 +53,7 @@ public class VehicleService implements VehicleUseCasePort {
     @Override
     public void deleteById(Long id) {
         if (!vehicleRepository.existsById(id)) {
-            throw new RuntimeException("Vehicle not found with id " + id);
+                throw new VehicleNotFoundException("Vehicle not found with id " + id);
         }
         vehicleRepository.deleteById(id);
     }
@@ -62,6 +61,6 @@ public class VehicleService implements VehicleUseCasePort {
     @Override
     public Vehicle getById(Long id) {
         return vehicleRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Vehicle not found with id: " + id));
+                .orElseThrow(() -> new VehicleNotFoundException("Vehicle not found with id " + id));
     }
 }

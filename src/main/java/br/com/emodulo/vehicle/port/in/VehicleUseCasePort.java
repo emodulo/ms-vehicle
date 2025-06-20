@@ -1,10 +1,8 @@
 package br.com.emodulo.vehicle.port.in;
 
-import br.com.emodulo.vehicle.domain.Vehicle;
+import br.com.emodulo.vehicle.domain.model.Vehicle;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
-import java.util.List;
 
 public interface VehicleUseCasePort {
     Vehicle create(Vehicle vehicle);

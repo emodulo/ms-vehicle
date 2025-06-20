@@ -2,8 +2,8 @@ package br.com.emodulo.vehicle.adapter.out.database;
 
 
 import br.com.emodulo.vehicle.adapter.out.database.repository.ModelJpaRepository;
-import br.com.emodulo.vehicle.domain.Make;
-import br.com.emodulo.vehicle.domain.Model;
+import br.com.emodulo.vehicle.domain.model.Make;
+import br.com.emodulo.vehicle.domain.model.Model;
 import br.com.emodulo.vehicle.port.out.ModelRepositoryPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

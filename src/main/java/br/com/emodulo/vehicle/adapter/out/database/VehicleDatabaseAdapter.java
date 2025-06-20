@@ -2,14 +2,13 @@ package br.com.emodulo.vehicle.adapter.out.database;
 
 import br.com.emodulo.vehicle.adapter.out.database.mapper.VehicleEntityMapper;
 import br.com.emodulo.vehicle.adapter.out.database.repository.VehicleJpaRepository;
-import br.com.emodulo.vehicle.domain.Vehicle;
+import br.com.emodulo.vehicle.domain.model.Vehicle;
 import br.com.emodulo.vehicle.port.out.VehicleRepositoryPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Optional;
 
 

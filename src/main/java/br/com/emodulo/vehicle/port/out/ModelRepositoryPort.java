@@ -1,6 +1,6 @@
 package br.com.emodulo.vehicle.port.out;
 
-import br.com.emodulo.vehicle.domain.Model;
+import br.com.emodulo.vehicle.domain.model.Model;
 
 import java.util.Optional;
 

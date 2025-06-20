@@ -2,8 +2,8 @@ package br.com.emodulo.vehicle.adapter.in.api.mapper;
 
 import br.com.emodulo.vehicle.adapter.in.api.dto.VehicleRequestDTO;
 import br.com.emodulo.vehicle.adapter.in.api.dto.VehicleResponseDTO;
-import br.com.emodulo.vehicle.domain.Model;
-import br.com.emodulo.vehicle.domain.Vehicle;
+import br.com.emodulo.vehicle.domain.model.Model;
+import br.com.emodulo.vehicle.domain.model.Vehicle;
 import org.springframework.stereotype.Component;
 
 

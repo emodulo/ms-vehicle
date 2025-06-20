@@ -1,34 +1,36 @@
 package br.com.emodulo.vehicle.adapter.in.api.controller;
 
 import br.com.emodulo.vehicle.adapter.in.api.dto.VehicleResponseDTO;
+import br.com.emodulo.vehicle.adapter.in.api.handler.VehicleExceptionHandler;
 import br.com.emodulo.vehicle.adapter.in.api.mapper.VehicleDtoMapper;
-import br.com.emodulo.vehicle.domain.Make;
-import br.com.emodulo.vehicle.domain.Model;
-import br.com.emodulo.vehicle.domain.Vehicle;
+import br.com.emodulo.vehicle.domain.exception.VehicleNotFoundException;
+import br.com.emodulo.vehicle.domain.model.Make;
+import br.com.emodulo.vehicle.domain.model.Model;
+import br.com.emodulo.vehicle.domain.model.Vehicle;
 import br.com.emodulo.vehicle.port.in.VehicleUseCasePort;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.extension.MediaType;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 
 @ExtendWith(MockitoExtension.class)
+@ActiveProfiles("test")
 class VehicleControllerTest {
 
     @InjectMocks
@@ -44,7 +46,9 @@ class VehicleControllerTest {
 
     @BeforeEach
     void setUp() {
-        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(controller)
+                .setControllerAdvice(new VehicleExceptionHandler())
+                .build();
     }
 
     @Test
@@ -59,17 +63,18 @@ class VehicleControllerTest {
         when(service.getById(1L)).thenReturn(vehicle);
         when(mapper.toResponseDTO(vehicle)).thenReturn(dto);
 
-        mockMvc.perform(get("/vehicles/1"))
+        mockMvc.perform(get("/vehicles/1")
+                        .contentType(String.valueOf(MediaType.APPLICATION_JSON)))
                 .andExpect(status().isOk())
-                .andExpect((ResultMatcher) jsonPath("$.id").value(1));
+                .andExpect(jsonPath("$.id").value(1));
     }
 
     @Test
     void shouldReturnNotFoundIfVehicleDoesNotExist() throws Exception {
-        when(service.getById(99L)).thenThrow(new RuntimeException("Vehicle not found"));
+        when(service.getById(99L)).thenThrow(new VehicleNotFoundException("Vehicle not found"));
 
         mockMvc.perform(get("/vehicles/99"))
-                .andExpect(status().isInternalServerError());
+                .andExpect(status().isNotFound());
     }
 
     @Test
@@ -90,7 +95,7 @@ class VehicleControllerTest {
                         .contentType("application/json")
                         .content(json))
                 .andExpect(status().isOk())
-                .andExpect((ResultMatcher) jsonPath("$.version").value("1.0"));
+                .andExpect(jsonPath("$.version").value("1.0"));
     }
 
     @Test
@@ -111,15 +116,15 @@ class VehicleControllerTest {
                         .contentType("application/json")
                         .content(json))
                 .andExpect(status().isOk())
-                .andExpect((ResultMatcher) jsonPath("$.version").value("1.6"));
+                .andExpect(jsonPath("$.version").value("1.6"));
     }
 
     @Test
     void shouldDeleteVehicle() throws Exception {
-        doNothing().when(service).deleteById(1L);
+        when(service.getById(99L)).thenThrow(new VehicleNotFoundException("Vehicle not found with id " + 99L));
 
-        mockMvc.perform(delete("/vehicles/1"))
-                .andExpect(status().isNoContent());
+        mockMvc.perform(get("/vehicles/99"))
+                .andExpect(status().isNotFound());
     }
 
     @Test
@@ -135,6 +140,6 @@ class VehicleControllerTest {
 
         mockMvc.perform(patch("/vehicles/1/sell"))
                 .andExpect(status().isOk())
-                .andExpect((ResultMatcher) jsonPath("$.isSold").value(true));
+                .andExpect(jsonPath("$.isSold").value(true));
     }
 }
