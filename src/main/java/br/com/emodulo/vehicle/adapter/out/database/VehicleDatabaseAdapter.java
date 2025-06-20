@@ -5,6 +5,8 @@ import br.com.emodulo.vehicle.adapter.out.database.repository.VehicleJpaReposito
 import br.com.emodulo.vehicle.domain.Vehicle;
 import br.com.emodulo.vehicle.port.out.VehicleRepositoryPort;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -30,15 +32,15 @@ public class VehicleDatabaseAdapter implements VehicleRepositoryPort {
     }
 
     @Override
-    public List<Vehicle> findAllAvailable() {
-        return jpaRepository.findByIsSoldFalseOrderByPriceAsc()
-                .stream().map(mapper::toDomain).toList();
+    public Page<Vehicle> findAll(Pageable pageable) {
+        return jpaRepository.findAll(pageable)
+                .map(mapper::toDomain);
     }
 
     @Override
-    public List<Vehicle> findAllSold() {
-        return jpaRepository.findByIsSoldTrueOrderByPriceAsc()
-                .stream().map(mapper::toDomain).toList();
+    public Page<Vehicle> findByIsSold(Boolean sold, Pageable pageable) {
+        return jpaRepository.findByIsSold(sold, pageable)
+                .map(mapper::toDomain);
     }
 
     @Override

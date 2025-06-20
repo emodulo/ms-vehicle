@@ -1,5 +1,7 @@
 package br.com.emodulo.vehicle.adapter.in.api.controller;
 
+import br.com.emodulo.vehicle.adapter.in.api.dto.ApiResponse;
+import br.com.emodulo.vehicle.adapter.in.api.dto.PaginationResponse;
 import br.com.emodulo.vehicle.adapter.in.api.dto.VehicleRequestDTO;
 import br.com.emodulo.vehicle.adapter.in.api.dto.VehicleResponseDTO;
 import br.com.emodulo.vehicle.adapter.in.api.mapper.VehicleDtoMapper;
@@ -7,10 +9,15 @@ import br.com.emodulo.vehicle.domain.Vehicle;
 import br.com.emodulo.vehicle.port.in.VehicleUseCasePort;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/vehicles")
@@ -34,15 +41,17 @@ public class VehicleController {
     }
 
     @GetMapping
-    public ResponseEntity<List<VehicleResponseDTO>> listAvailable() {
-        List<Vehicle> list = service.listAvailable();
-        return ResponseEntity.ok(list.stream().map(mapper::toResponseDTO).toList());
-    }
+    public ResponseEntity<ApiResponse<VehicleResponseDTO>> listVehicles(
+            @RequestParam(required = false) Boolean sold,
+            @PageableDefault(size = 10, sort = "price", direction = Sort.Direction.ASC) Pageable pageable
+    ) {
+        Page<Vehicle> pageResponse = service.listFiltered(sold, pageable);
+        Page<VehicleResponseDTO> dtoPage = pageResponse.map(mapper::toResponseDTO);
 
-    @GetMapping("/sold")
-    public ResponseEntity<List<VehicleResponseDTO>> listSold() {
-        List<Vehicle> list = service.listSold();
-        return ResponseEntity.ok(list.stream().map(mapper::toResponseDTO).toList());
+        return ResponseEntity.ok(new ApiResponse<>(
+                dtoPage.getContent(),
+                PaginationResponse.fromPage(dtoPage)
+        ));
     }
 
     @PatchMapping("/{id}/sell")

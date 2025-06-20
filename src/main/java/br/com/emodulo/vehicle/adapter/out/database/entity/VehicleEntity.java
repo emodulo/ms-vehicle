@@ -30,7 +30,7 @@ public class VehicleEntity {
     private Integer yearModel;
 
     @Column(name = "odometer")
-    private Integer Odometer;
+    private Integer odometer;
 
     @Column(name = "color")
     private String color;

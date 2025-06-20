@@ -6,6 +6,8 @@ import br.com.emodulo.vehicle.port.in.VehicleUseCasePort;
 import br.com.emodulo.vehicle.port.out.ModelRepositoryPort;
 import br.com.emodulo.vehicle.port.out.VehicleRepositoryPort;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,13 +34,11 @@ public class VehicleService implements VehicleUseCasePort {
     }
 
     @Override
-    public List<Vehicle> listAvailable() {
-        return vehicleRepository.findAllAvailable();
-    }
-
-    @Override
-    public List<Vehicle> listSold() {
-        return vehicleRepository.findAllSold();
+    public Page<Vehicle> listFiltered(Boolean sold, Pageable pageable) {
+        if (sold == null) {
+            return vehicleRepository.findAll(pageable);
+        }
+        return vehicleRepository.findByIsSold(sold, pageable);
     }
 
     @Override

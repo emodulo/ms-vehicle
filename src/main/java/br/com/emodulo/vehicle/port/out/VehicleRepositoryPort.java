@@ -1,15 +1,16 @@
 package br.com.emodulo.vehicle.port.out;
 
 import br.com.emodulo.vehicle.domain.Vehicle;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 import java.util.Optional;
 
 public interface VehicleRepositoryPort {
     Vehicle save(Vehicle vehicle);
     Optional<Vehicle> findById(Long id);
-    List<Vehicle> findAllAvailable();
-    List<Vehicle> findAllSold();
+    Page<Vehicle> findAll(Pageable pageable);
+    Page<Vehicle> findByIsSold(Boolean sold, Pageable pageable);
     void deleteById(Long id);
     boolean existsById(Long id);
 }

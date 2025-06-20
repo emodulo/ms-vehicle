@@ -14,7 +14,7 @@ public class Vehicle {
     private String version;
     private Integer yearFabrication;
     private Integer yearModel;
-    private Integer Odometer;
+    private Integer odometer;
     private String color;
     private String bodyType;
     private String transmission;
@@ -27,7 +27,7 @@ public class Vehicle {
         this.version = version;
         this.yearFabrication = yearFabrication;
         this.yearModel = yearModel;
-        Odometer = odometer;
+        this.odometer = odometer;
         this.color = color;
         this.bodyType = bodyType;
         this.transmission = transmission;
@@ -42,7 +42,7 @@ public class Vehicle {
         this.version = version;
         this.yearFabrication = yearFabrication;
         this.yearModel = yearModel;
-        Odometer = odometer;
+        this.odometer = odometer;
         this.color = color;
         this.bodyType = bodyType;
         this.transmission = transmission;
