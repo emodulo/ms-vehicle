@@ -12,4 +12,5 @@ public interface VehicleUseCasePort {
     Page<Vehicle> listFiltered(Boolean sold, Pageable pageable);
     Vehicle markAsSold(Long id);
     void deleteById(Long id);
+    Vehicle getById(Long id);
 }

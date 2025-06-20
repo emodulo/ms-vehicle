@@ -58,4 +58,10 @@ public class VehicleService implements VehicleUseCasePort {
         }
         vehicleRepository.deleteById(id);
     }
+
+    @Override
+    public Vehicle getById(Long id) {
+        return vehicleRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Vehicle not found with id: " + id));
+    }
 }

@@ -65,4 +65,10 @@ public class VehicleController {
         service.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<VehicleResponseDTO> getById(@PathVariable Long id) {
+        Vehicle vehicle = service.getById(id);
+        return ResponseEntity.ok(mapper.toResponseDTO(vehicle));
+    }
 }
