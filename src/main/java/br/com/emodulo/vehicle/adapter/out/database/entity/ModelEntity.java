@@ -35,4 +35,7 @@ public class ModelEntity {
         this.name = name;
         this.make = make;
     }
+
+    public void setBrand(MakeEntity make) {
+    }
 }

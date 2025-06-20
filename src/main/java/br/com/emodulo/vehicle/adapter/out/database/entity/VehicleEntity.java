@@ -2,7 +2,6 @@ package br.com.emodulo.vehicle.adapter.out.database.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
@@ -53,4 +52,19 @@ public class VehicleEntity {
     @ManyToOne
     @JoinColumn(name = "model_id")
     private ModelEntity model;
+
+    public VehicleEntity(Long id, String version, Integer yearFabrication, Integer yearModel, Integer odometer, String color, String bodyType, String transmission, Boolean isArmored, BigDecimal price, Boolean isSold, ModelEntity model) {
+        this.id = id;
+        this.version = version;
+        this.yearFabrication = yearFabrication;
+        this.yearModel = yearModel;
+        this.odometer = odometer;
+        this.color = color;
+        this.bodyType = bodyType;
+        this.transmission = transmission;
+        this.isArmored = isArmored;
+        this.price = price;
+        this.isSold = isSold;
+        this.model = model;
+    }
 }
