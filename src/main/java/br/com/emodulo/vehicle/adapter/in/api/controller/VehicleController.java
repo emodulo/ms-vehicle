@@ -1,5 +1,6 @@
 package br.com.emodulo.vehicle.adapter.in.api.controller;
 
+import br.com.emodulo.vehicle.adapter.in.api.config.ApiVersion;
 import br.com.emodulo.vehicle.adapter.in.api.dto.ApiResponse;
 import br.com.emodulo.vehicle.adapter.in.api.dto.PaginationResponse;
 import br.com.emodulo.vehicle.adapter.in.api.dto.VehicleRequestDTO;
@@ -18,10 +19,10 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
-@RequestMapping("/vehicles")
 @RequiredArgsConstructor
 @Tag(name = "Veículos", description = "Operações com veículos")
+@RestController
+@RequestMapping(ApiVersion.V1 + "/vehicles")
 public class VehicleController {
 
     private final VehicleUseCasePort service;
