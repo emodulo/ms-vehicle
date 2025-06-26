@@ -12,7 +12,7 @@ import java.util.List;
 @Setter
 @RequiredArgsConstructor
 @Entity
-@Table(name = "tb_makes")
+@Table(schema = "vehicle", name = "tb_makes")
 public class MakeEntity {
 
     @Id

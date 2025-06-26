@@ -1,18 +1,20 @@
-CREATE TABLE tb_makes (
+CREATE SCHEMA IF NOT EXISTS vehicle;
+
+CREATE TABLE vehicle.tb_makes (
     make_id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE tb_models (
+CREATE TABLE vehicle.tb_models (
     model_id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     make_id INT NOT NULL,
     CONSTRAINT fk_model_make FOREIGN KEY (make_id)
-        REFERENCES tb_makes(make_id)
+        REFERENCES vehicle.tb_makes(make_id)
         ON DELETE CASCADE
 );
 
-CREATE TABLE tb_vehicles (
+CREATE TABLE vehicle.tb_vehicles (
     vehicle_id SERIAL PRIMARY KEY,
     version VARCHAR(255),
     yearFabrication INT,
@@ -26,6 +28,6 @@ CREATE TABLE tb_vehicles (
     isSold BOOLEAN,
     model_id INT NOT NULL,
     CONSTRAINT fk_vehicle_model FOREIGN KEY (model_id)
-        REFERENCES tb_models(model_id)
+        REFERENCES vehicle.tb_models(model_id)
         ON DELETE CASCADE
 );

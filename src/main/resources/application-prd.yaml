@@ -11,6 +11,8 @@ spring:
   liquibase:
     enabled: true
   jpa:
+    properties:
+      hibernate.default_schema: vehicle
     hibernate:
       ddl-auto: none
 

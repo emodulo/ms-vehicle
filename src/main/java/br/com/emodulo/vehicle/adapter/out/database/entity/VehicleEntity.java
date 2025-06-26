@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 @Setter
 @RequiredArgsConstructor
 @Entity
-@Table(name = "tb_vehicles")
+@Table(schema = "vehicle", name = "tb_vehicles")
 public class VehicleEntity {
 
     @Id

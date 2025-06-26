@@ -1,4 +1,4 @@
-INSERT INTO tb_makes (make_id, name) VALUES
+INSERT INTO vehicle.tb_makes (make_id, name) VALUES
 (1, 'Chevrolet'),
 (2, 'Volkswagen'),
 (3, 'Fiat'),

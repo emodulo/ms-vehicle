@@ -1,4 +1,4 @@
-INSERT INTO tb_vehicles (version, yearFabrication, yearModel, Odometer, color, bodyType, transmission, isArmored, price, isSold, model_id) VALUES
+INSERT INTO vehicle.tb_vehicles (version, yearFabrication, yearModel, Odometer, color, bodyType, transmission, isArmored, price, isSold, model_id) VALUES
 ('2.0 Drive', 2019, 2020, 27408, 'Branco', 'Hatch', 'Manual', false, 95694.15, false, 16),
 ('1.6 Sport', 2019, 2019, 67847, 'Vermelho', 'Picape', 'Manual', false, 72777.99, false, 5),
 ('1.6 LT', 2020, 2020, 55427, 'Azul', 'Hatch', 'Manual', false, 126796.37, false, 15),

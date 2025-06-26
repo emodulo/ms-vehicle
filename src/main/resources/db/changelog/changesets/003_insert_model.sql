@@ -1,4 +1,4 @@
-INSERT INTO tb_models (model_id, name, make_id) VALUES
+INSERT INTO vehicle.tb_models (model_id, name, make_id) VALUES
 (1, 'Onix', 1),
 (2, 'Prisma', 1),
 (3, 'Cruze', 1),
