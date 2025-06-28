@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ms-vehicle-deployment
-  namespace: default
   labels:
     app: ms-vehicle
 spec:

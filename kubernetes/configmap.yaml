@@ -4,7 +4,7 @@ metadata:
   name: ms-vehicle-config
 data:
   APP_NAME: "ms-vehicle"
-  APP_PORT: "80"
+  APP_PORT: "8080"
   SHOW_SWAGGER: "true"
   HOST: "postgres-service:5432"
   POSTGRES_DB: "eModulo"
