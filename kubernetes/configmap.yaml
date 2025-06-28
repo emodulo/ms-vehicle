@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ms-vehicle-config
+data:
+  APP_NAME: ms-vehicle
+  APP_PORT: "8080"
+  SPRING_PROFILES_ACTIVE: dev
+  HOST: postgres:5432
+  POSTGRES_DB: eModulo
+  PROVIDER_ISSUER_URI: https://cognito-idp.us-east-1.amazonaws.com/us-east-1_axA27LFM2
