@@ -20,7 +20,7 @@ spec:
           image: finthos/ms-vehicle:latest
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 80
+            - containerPort: 8080
           envFrom:
             - configMapRef:
                 name: ms-vehicle-config
