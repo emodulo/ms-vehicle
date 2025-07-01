@@ -61,6 +61,13 @@ public class VehicleController {
     @PatchMapping("/{id}/sell")
     @Operation(summary = "Vender veículo", description = "Marca veículo como vendido.")
     public ResponseEntity<VehicleResponseDTO> markAsSold(@PathVariable Long id) {
+
+        Vehicle vehicle = service.getById(id);
+
+        if (vehicle == null) {
+            return ResponseEntity.notFound().build();
+        }
+
         Vehicle updated = service.markAsSold(id);
         return ResponseEntity.ok(mapper.toResponseDTO(updated));
     }
@@ -76,6 +83,11 @@ public class VehicleController {
     @Operation(summary = "Buscar veículo por ID", description = "Retorna os dados de um veículo específico.")
     public ResponseEntity<VehicleResponseDTO> getById(@PathVariable Long id) {
         Vehicle vehicle = service.getById(id);
+
+        if (vehicle == null) {
+            return ResponseEntity.notFound().build();
+        }
+
         return ResponseEntity.ok(mapper.toResponseDTO(vehicle));
     }
 }
