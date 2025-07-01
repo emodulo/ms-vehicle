@@ -60,7 +60,7 @@ public class VehicleController {
 
     @PatchMapping("/{id}/sell")
     @Operation(summary = "Vender veículo", description = "Marca veículo como vendido.")
-    public ResponseEntity<VehicleResponseDTO> markAsSold(@PathVariable Long id) {
+    public ResponseEntity<?> markAsSold(@PathVariable Long id) {
 
         Vehicle vehicle = service.getById(id);
 
@@ -81,7 +81,7 @@ public class VehicleController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Buscar veículo por ID", description = "Retorna os dados de um veículo específico.")
-    public ResponseEntity<VehicleResponseDTO> getById(@PathVariable Long id) {
+    public ResponseEntity<?> getById(@PathVariable Long id) {
         Vehicle vehicle = service.getById(id);
 
         if (vehicle == null) {
